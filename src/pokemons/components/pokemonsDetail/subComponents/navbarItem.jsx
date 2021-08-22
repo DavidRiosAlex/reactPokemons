@@ -1,23 +1,25 @@
-import { useContext } from 'react';
-import { useQuery } from 'react-query';
-import { pokemonId } from '../index'; 
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPokemonEvolution } from '../../../actions';
 
-const NavBarItem = () => {
-    const contextPokemon = useContext(pokemonId);
-    console.log('contextPokemon', contextPokemon);
-    const { data } = useQuery('repoData', async () => {
-        const response = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${contextPokemon}`);
-        return response.json();
-        }
-    )
-    // console.log(data);
-    return <>
-        <b>Evolutions</b>
-        {data && data.chain?.evolves_to?.map( state => {
-            return <div> {state.species.name}</div>
-        })}
-        {/* <div>hola</div> */}
-    </>
-};
+const NavBarItem = ({ id: pokemonName }) => {
+    
+    const dispatch = useDispatch();
+    const pokemonId = useSelector(state => state.pokemons.detail);
+    const evolutions = useSelector(state => state.pokemons.evolutions?.chain?.evolves_to);
+
+    useEffect(() =>{
+        dispatch(getPokemonEvolution());
+    }, [dispatch, pokemonId])
+
+    return(
+        <>
+            <b>Evolutions</b>
+            {evolutions && evolutions.map( (state, index) => {
+                return <div key={index}> {state.species.name}</div>
+            })}
+            {/* <div>hola</div> */}
+        </>
+)};
 
 export default NavBarItem;
