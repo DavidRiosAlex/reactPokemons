@@ -2,7 +2,7 @@
   "name": "pokemons",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://davidAlexanderRios.github.io",
+  "homepage": "http://davidAlexanderRios.github.io/my-app",
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.6.1",
