@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPokemonEvolution } from '../../../actions';
+import { getPokemonEvolution } from '../../../../actions';
 
 const NavBarItem = ({ id: pokemonName }) => {
     

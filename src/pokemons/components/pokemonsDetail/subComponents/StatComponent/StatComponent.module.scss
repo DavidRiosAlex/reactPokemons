@@ -1,0 +1,28 @@
+.StatBox{
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+    box-shadow: 7px -3px 8px 4px rgba(0,0,0,0.47);
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    & > img {
+        width: 50px;
+        margin-top: 20px;
+    }
+    & > .statTitle{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    & > .statDescription{
+        height: 50%;
+        font-weight: bold;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

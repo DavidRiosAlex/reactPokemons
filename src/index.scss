@@ -1,4 +1,7 @@
 #root{
     width: 100vw;
     height: 100vh;
+    background: linear-gradient(45deg, hsla(350, 73%, 44%, 1) 10%, hsla(235, 100%, 48%, 1) 100%);
+    z-index: -2;
+    position: absolute;
 }
