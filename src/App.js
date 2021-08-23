@@ -1,5 +1,5 @@
 import {Provider} from 'react-redux';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import store from './app/store';
 import Pokemons from './pokemons/components/listPokemons';
 import DetailPokemons from './pokemons/components/pokemonsDetail';
@@ -19,6 +19,7 @@ function App() {
               {/* <DetailPokemons/> */}
             </Route>
           </Switch>
+          <Redirect to="/pokemons"/>
         </Router>
     </Provider>
   );
