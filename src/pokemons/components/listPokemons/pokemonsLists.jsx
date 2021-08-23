@@ -18,7 +18,7 @@ const ListPokemons = ({ history }) => {
     const onScrolling = () => {
         const { offsetHeight, scrollHeight, scrollTop } = ListRef.current;
         if ( (scrollHeight - 300 ) <= scrollTop + offsetHeight ){
-            if ( count > pokemons.length)fetchNewPokemons();
+            if ( count > pokemons.length) fetchNewPokemons();
         }
     };
     const filterByName = ({ target: { value } }) => {
@@ -26,12 +26,16 @@ const ListPokemons = ({ history }) => {
     }
 
     useEffect(() => {
-        ListRef.current.onscroll = onScrolling;
         dispatch(getPokemons());
         return () => dispatch(cleanPokemons());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch]);
-    
+
+    useEffect(() => {
+        ListRef.current.onscroll = onScrolling;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [count, pokemons])
+
     return (
         <div className={styles.pokemons}>
             <div className={styles.searchBox}>

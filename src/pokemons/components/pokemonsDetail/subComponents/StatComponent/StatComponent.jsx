@@ -14,7 +14,7 @@ const StatComponent = ({ title, effort, base }) => {
     return (
         <div className={styles.StatBox}>
             <div className={styles.statTitle}>
-                {title}
+                {title.replace('-', ' ')}
             </div>
             <img src={svgFiles(title)} alt={title}/>
             <hr/>

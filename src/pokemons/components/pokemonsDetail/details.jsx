@@ -1,6 +1,7 @@
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SideBar from 'react-sidebar';
+import CustomSideBar from '../../../shared/components/SideBar';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import StatComponent from './subComponents/StatComponent';
 import AbilityComponent from './subComponents/AbilityComponent';
@@ -36,19 +37,13 @@ const ListPokemons = ({ match: { params: { id } }, history }) => {
             setStats(data.stats)
         }
     }, [data]);
-
-    const handleSideBarState = () => setSidebar(!sidebar)
+    
+    const CustomNavBar = () => <Suspense fallback={<></>}> <NavBarItem id={id}/></Suspense>
 
     return (
         <>
-            <SideBar
-                sidebar={
-                    <Suspense fallback={<></>}> <NavBarItem id={id}/> </Suspense>
-                }
-                docked={true}
-                pullRight={true}
-                onSetOpen={handleSideBarState}
-                styles={{ sidebar: { background: "white" }}}
+            <CustomSideBar
+                CustomNavBar={CustomNavBar}
             >
                 <div className={styles.detailContainer}>
                     <div className={styles.pokemonInformationContainer}>
@@ -61,7 +56,7 @@ const ListPokemons = ({ match: { params: { id } }, history }) => {
                             </div>
                         </div>
                         <img className={styles.pokemonImage} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`} alt={data.name} />
-                        <div className={styles.label}>Skills</div>
+                        {/* <div className={styles.label}>Skills</div>
                         <div className={styles.skillContainer}>
                             {abilities.map( (pokemon, index) => 
                                 <AbilityComponent 
@@ -69,7 +64,7 @@ const ListPokemons = ({ match: { params: { id } }, history }) => {
                                     name={pokemon.ability.name} 
                                     {...pokemon}/> 
                                 )}
-                        </div>
+                        </div> */}
                         <div className={styles.label}>Stats</div>
                         <div className={styles.statsContainer}>
                             {stats.map(({stat, base_stat, effort, ...information}, index) => {
@@ -88,7 +83,7 @@ const ListPokemons = ({ match: { params: { id } }, history }) => {
                         <img className={styles.showcase} src="/assets/ashPokemon.png" alt="showcase"/>
                     </div>
                 </div>
-            </SideBar>
+            </CustomSideBar>
         </>
     );
 };

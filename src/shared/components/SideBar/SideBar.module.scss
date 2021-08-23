@@ -1,0 +1,27 @@
+.container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 100px;
+    max-width: inherit;
+    box-sizing:border-box;
+    overflow-x: hidden;
+    & > .sidebarContainer{
+        position: absolute;
+        right: -200px;
+        top: 0;
+        bottom: 0;
+        width: 200px;
+        background: transparent;
+        box-sizing:border-box;
+        transition: right 0.25s ease-in-out;
+        // background: blue;
+    }
+    & > .sidebarContainer:hover{
+        right: 0px;
+    }
+    & > *::-webkit-scrollbar {
+        display: none;
+      }
+}
